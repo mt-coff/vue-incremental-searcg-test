@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li :key="item.id" v-for="item in items">
+    <li :key="item.id" v-for="item in items" @click="handleClick(item)">
       {{ item.name }}
     </li>
   </ul>
@@ -13,6 +13,11 @@ export default {
     items: {
       type: Array,
       default: () => []
+    }
+  },
+  methods: {
+    handleClick(item) {
+      this.$emit("click", item);
     }
   }
 };

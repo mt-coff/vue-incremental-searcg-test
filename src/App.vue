@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <search v-model="searchQuery" />
-    <item-list :items="filteredItems" />
+    <item-list :items="filteredItems" @click="handleClick" />
   </div>
 </template>
 
@@ -31,6 +31,12 @@ export default {
       return this.items.filter(
         item => item.name.indexOf(this.searchQuery) !== -1
       );
+    }
+  },
+  methods: {
+    async handleClick(item) {
+      const res = await fetch(`http://localhost:3000/items?id=${item.id}`);
+      alert(JSON.stringify(await res.json()));
     }
   }
 };
