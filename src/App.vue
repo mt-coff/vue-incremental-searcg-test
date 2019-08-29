@@ -35,6 +35,7 @@ export default {
   },
   methods: {
     async handleClick(item) {
+      this.searchQuery = item.name;
       const res = await fetch(`http://localhost:3000/items?id=${item.id}`);
       alert(JSON.stringify(await res.json()));
     }
